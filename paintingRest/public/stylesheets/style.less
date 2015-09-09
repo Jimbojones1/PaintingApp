@@ -6,3 +6,159 @@ body {
 a {
   color: #00B7FF;
 }
+
+body {
+  background-image: url('http://i.imgur.com/wGxUD1O.jpg');
+  background-size: cover;
+  font-family: sans-serif;
+}
+
+canvas {
+  background: #faf;
+  display: block;
+  margin: 50px auto 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 0 0 #222;
+}
+
+.controls {
+  margin: 0 auto;
+  width: 600px;
+  min-height: 60px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  float: left;
+  padding: 10px 0 20px;
+  width:  100%;
+  text-align: center;
+}
+ul li, #newColor {
+	display:block;
+	height: 54px;
+	width: 54px;
+	border-radius: 50%;
+	cursor: pointer;
+	border: 0;
+	box-shadow: 0 3px 0 0 #222;
+}
+ul li {
+  display: inline-block;
+  margin: 0 5px 10px;
+}
+
+.red {
+  background: #fc4c4f;
+}
+
+.blue {
+	background: #4fa3fc;
+}
+
+.yellow {
+	background: #ECD13F;
+}
+
+.selected {
+  border: 7px solid rgba(240, 233, 224, 1);
+  width: 40px;
+  height: 40px;
+}
+button {
+  background: rgba(235, 109, 28, 0.83);
+  box-shadow: 0 2px 0 0.5px #845f80;
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+  text-shadow: 0 1px #845f80;
+  display: block;
+  font: 16px;
+  line-height: 40px;
+}
+#revealColorSelect {
+  border: none;
+  border-radius: 5px;
+  margin: 10px auto;
+  padding: 5px 20px;
+  width: 160px;
+}
+/* color pallete */
+#colorSelect {
+  background: #fff;
+  padding: 10px;
+  width:  50%;
+  margin: 20px auto;
+  position: relative;
+  display: none;
+
+}
+#colorSelect:after {
+  bottom: 100%;
+  left: 50%;
+  border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+  clear: both;
+	position: absolute;
+	pointer-events: none;
+	border-color: rgba(255, 255, 255, 0);
+	border-bottom-color: #fff;
+	border-width: 10px;
+	margin-left: -10px;
+}
+
+#newColor {
+	width: 90px;
+	height: 90px;
+	border-radius: 3px;
+	box-shadow: none;
+	float: left;
+	border: none;
+	margin: 10px 20px 20px 10px;
+}
+.sliders p {
+  margin: 8px 0;
+  vertical-align: middle ;
+}
+.sliders label {
+  display: inline-block;
+  margin: 0 10px 0 0;
+  width: 10%;
+  font-size: 1em;
+  color: #6D574E;
+}
+.sliders input {
+  position: relative;
+  top: 2px;
+}
+#colorSelect button {
+  width: 106.5%;
+  clear: both;
+  border-top: 1px solid #6A845F;
+  border-radius: 0 0 5px 5px;
+  margin: 10px -10px -7px;
+  padding: 5px 10px;
+}
+
+#clearButtons input{
+  margin-left: 21%;
+  color: #fff;
+  padding: 0.6%;
+  text-shadow: 0 1px #845f80;
+  background: rgba(235, 109, 28, 0.83);
+  box-shadow: 0 2px 0 0.5px #845f80;
+}
+
+#removeButton {
+  margin-left: 50%;
+  width: 70px;
+  height: 50px;
+  font-size: 3em;
+  padding: 0;
+  background-color: white;
+
+}
