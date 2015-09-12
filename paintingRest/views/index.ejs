@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html ng-app="paintApp">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+    <title>{{title}}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css'>
+
+  </head>
+  <body ng-app='paintApp'>
+
+
+    <div ng-controller='paintCtrl'>
+  <form ng-submit='create(username, email, password)' class="login">
+    <input type="text" ng-model="username" name="username" placeholder="username">
+    <input type="text" ng-model="email" name="email" placeholder="email">
+    <input type="text" ng-model="password" name="password" placeholder="password">
+    <input type="submit" name="name" value="Submit">
+  </form>
+
+      <select name="load">
+        <option ng-repeat='users in data' value={{users.username}}>{{users.username}}</option>
+      </select>
+      <ol>
+        <li ng-repeat='users in data'>{{users.username}}</li>
+      </ol>
+
+
+
+
+
+<canvas id="myCanvas"width="600" height="400"></canvas>
+  <div id="clearButtons">
+      <input type="button" id="clearCanvas" value="Clear">
+      <input type="button" id="fillCanvas">
+  </div>
+    <div class="controls">
+        <ul>
+          <button id="LoadButton" type="button" name="button">load</button>
+          <button ng-click='create(canvas)' id="SaveButton" type="submit" name="canvas">Save</button>
+          <li class="red selected"></li>
+          <li class="blue"></li>
+          <li class="yellow"></li>
+        </ul>
+        </div>
+        <button id="revealColorSelect" type="button" >New Color</button>
+          <div id="colorSelect">
+              <span id="newColor"></span>
+              <div class="sliders">
+                <p>
+                  <label for="red">Red</label>
+                  <input id="red" name="red" type="range" min=0 max=225 value=0>
+                </p>
+                <p>
+                  <label for="green">Green</label>
+                  <input id="green" name="green" type="range" min=0 max=225 value=0>
+                </p>
+                <p>
+                  <label for="blue">Blue</label>
+                  <input id="blue" name="blue" type="range" min=0 max=225 value=0>
+                </p>
+                <p>
+                  <label for="opacity">OPA</label>
+                  <input id="opacity" name="opacity" type="range" min=0 max=1 step = 0.1 value= 1>
+                </p>
+              </div>
+              <div>
+                <button type="button" id="addNewColor">Add Color</button>
+              </div>
+            </div>
+          </div>
+    <script type="text/javascript" src='/javascripts/jquery.js'></script>
+    <script type="text/javascript" src='/javascripts/angular.min.js'></script>
+    <script type="text/javascript" src='/javascripts/angular-resource.js'></script>
+    <script type="text/javascript" src='/javascripts/core.js'></script>
+    <script type="text/javascript" src='/javascripts/app.js'></script>
+  </body>
+</html>

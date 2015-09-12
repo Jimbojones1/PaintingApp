@@ -106,15 +106,15 @@ $('#fillCanvas').on("click", function(){
       app.context.fill();
 });
 
-$('#SaveButton').on("click", function(){
-  console.log("my save button is working");
-  app.context = $('canvas')[0].getContext("2d");
-  app.canvas = $('canvas');
-  app.dataURL = app.canvas[0].toDataURL("image/png");
-  console.log(app.dataURL);
-  var image = new Image();
-  image.src = app.canvas[0].toDataURL("image/png");
-})
+// $('#SaveButton').on("click", function(){
+//   console.log("my save button is working");
+//   app.context = $('canvas')[0].getContext("2d");
+//   app.canvas = $('canvas');
+//   app.dataURL = app.canvas[0].toDataURL("image/png");
+//   console.log(app.dataURL);
+//   var image = new Image();
+//   image.src = app.canvas[0].toDataURL("image/png");
+// })
 
 $('#LoadButton').on('click', function(){
   console.log('button working')
