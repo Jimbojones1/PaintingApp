@@ -9,20 +9,25 @@
   </head>
   <body ng-app='paintApp'>
 
-
     <div ng-controller='paintCtrl'>
   <form ng-submit='create(username, email, password)' class="login">
+    <label for="username">Username:</label>
     <input type="text" ng-model="username" name="username" placeholder="username">
-    <input type="text" ng-model="email" name="email" placeholder="email">
-    <input type="text" ng-model="password" name="password" placeholder="password">
-    <input type="submit" name="name" value="Submit">
+    <label for="email">Email:</label>
+    <input type="email" ng-model="email" name="email" placeholder="email">
+    <label for="password">Password:</label>
+    <input type="password" ng-model="password" name="password" placeholder="password" ng-minlength='4'>
+    <button type="submit">Login</button>
   </form>
 
-      <select name="load">
-        <option ng-repeat='users in data' value={{users.username}}>{{users.username}}</option>
+      <select id='dd' name="load" ng-model='data.activeImg'>
+        <option value="{{user.canvas}}" ng-repeat='user in data'>{{user.username}}</option>
       </select>
+
+      <img src='{{data.activeImg}}'>
+
       <ol>
-        <li ng-repeat='users in data'>{{users.username}}</li>
+        <li ng-repeat='users in data'>{{user.username}}</li>
       </ol>
 
 
@@ -36,7 +41,7 @@
   </div>
     <div class="controls">
         <ul>
-          <button id="LoadButton" type="button" name="button">load</button>
+          <button id="LoadButton" ng-click='drawCanvas(data.activeImg)' ng-model='canvas' type="button" name="button">load</button>
           <button ng-click='create(canvas)' ng-model='canvas' id="SaveButton" type="submit" name="canvas">Save</button>
           <li class="red selected"></li>
           <li class="blue"></li>
