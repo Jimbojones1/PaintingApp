@@ -7,104 +7,101 @@ app.mouseDown = false;
 
 $(document).ready(function(){
 
+  // buttons
 
+  $('.buttonHeader').on('click', function(){
+    console.log('my button is working');
+    $('.loginForm').toggle();
+  })
 
+  $('#revealColorSelect').on('click', function(){
+    $('.colorSelecter').slideToggle();
+  })
 
-app.color = $('.selected').css('background-color');
-//when clicking on control list
-$('.controls').on("click", "li", function(){
+  app.color = $('.selected').css('background-color');
+      //when clicking on control list
+    $('.controls').on("click", "li", function(){
 
-  $(this).siblings().removeClass('selected');
+        $(this).siblings().removeClass('selected');
+        $(this).addClass('selected');
+        app.color = $(this).css('background-color');
+    });
 
-  $(this).addClass('selected');
+    //when new color is pressed
+    $('#revealColorSelect').click(function(){
+      $('#colorSelect').toggle('fast');
+    });
 
-  app.color = $(this).css('background-color');
-});
-
-//when new color is pressed
-$('#revealColorSelect').click(function(){
-
-  $('#colorSelect').toggle();
-});
-
-//update the new color span
-app.changeColor = function() {
-  var r = $("#red").val();
-  var g = $("#green").val();
-  var b = $("#blue").val();
-  var a = $("#opacity").val();
-  $('#newColor').css("background-color", "rgba(" + r + ", " + b + ", " + g + ", " + a + ")");
-
-}
-
-//when color sliders chnage
-$('input[type=range]').on("input", app.changeColor);
-
-
-//when add color is pressed
-$("#addNewColor").click(function() {
-
-  app.newColor = $("<li></li>");
-
-  app.newColor.css("background-color", $('#newColor').css('background-color'));
-  $('.controls ul').append(app.newColor);
-
-  app.newColor.click();
-});
-
-
-// on mouse event on the canvas
-// Draw Lines
-
-
-
-app.canvas.mousedown(function(e){
-    app.lastEvent = e;
-    app.mouseDown = true;
-}).mousemove(function(e){
-
-      if(app.mouseDown) {
-      app.context.beginPath();
-      app.context.moveTo(app.lastEvent.offsetX, app.lastEvent.offsetY);
-      app.context.lineTo(e.offsetX, e.offsetY);
-      app.context.strokeStyle = app.color;
-      app.context.stroke();
-      app.lastEvent = e;
+  //update the new color span
+  app.changeColor = function() {
+      var r = $("#red").val();
+      var g = $("#green").val();
+      var b = $("#blue").val();
+      var a = $("#opacity").val();
+      $('#newColor').css("background-color", "rgba(" + r + ", " + b + ", " + g + ", " + a + ")");
     }
-  }).mouseup(function(){
-        app.mouseDown = false;
-  }).mouseleave(function(){
-    app.canvas.mouseup();
-  });
 
-  // begin custom shape
+  //when color sliders chnage
+  $('input[type=range]').on("input", app.changeColor);
 
 
-// clear button
-$('#clearCanvas').on("click", function(){
+  //when add color is pressed
+  $("#addNewColor").click(function() {
 
-        console.log("the button is working");
-      //app.context.clearRect(400, 600, app.canvas.width, app.canvas.height);
-        app.context.clearRect(0, 0, app.canvas.width(), app.canvas.height());
+    app.newColor = $("<li></li>");
 
-  });
+    app.newColor.css("background-color", $('#newColor').css('background-color'));
+    $('.controls ul').append(app.newColor);
 
-$('#fillCanvas').on("click", function(){
+    app.newColor.click();
+    });
 
-  console.log("the button is working")
 
-    app.context.beginPath();
-    app.context.moveTo(170, 80);
-    app.context.bezierCurveTo(130, 100, 130, 150, 230, 150);
-    app.context.bezierCurveTo(250, 180, 320, 180, 340, 150);
-    app.context.bezierCurveTo(420, 150, 420, 120, 390, 100);
-    app.context.bezierCurveTo(430, 40, 370, 30, 340, 50);
-    app.context.bezierCurveTo(320, 5, 250, 20, 250, 50);
-    app.context.bezierCurveTo(200, 5, 150, 20, 170, 80);
+    // on mouse event on the canvas
+    // Draw Lines
+    app.canvas.mousedown(function(e){
+          app.lastEvent = e;
+          app.mouseDown = true;
+      }).mousemove(function(e){
 
-      app.context.fillStyle = '#8ED6FF';
-      app.context.fill();
-});
+        if(app.mouseDown) {
+          app.context.beginPath();
+          app.context.moveTo(app.lastEvent.offsetX, app.lastEvent.offsetY);
+          app.context.lineTo(e.offsetX, e.offsetY);
+          app.context.strokeStyle = app.color;
+          app.context.stroke();
+          app.lastEvent = e;
+          }
+        }).mouseup(function(){
+              app.mouseDown = false;
+        }).mouseleave(function(){
+          app.canvas.mouseup();
+        });
+
+        // begin custom shape
+
+
+        // clear button
+      $('#clearCanvas').on("click", function(){
+            console.log("the button is working");
+          //app.context.clearRect(400, 600, app.canvas.width, app.canvas.height);
+            app.context.clearRect(0, 0, app.canvas.width(), app.canvas.height());
+          });
+
+      $('#fillCanvas').on("click", function(){
+
+        console.log("the button is working")
+          app.context.beginPath();
+          app.context.moveTo(170, 80);
+          app.context.bezierCurveTo(130, 100, 130, 150, 230, 150);
+          app.context.bezierCurveTo(250, 180, 320, 180, 340, 150);
+          app.context.bezierCurveTo(420, 150, 420, 120, 390, 100);
+          app.context.bezierCurveTo(430, 40, 370, 30, 340, 50);
+          app.context.bezierCurveTo(320, 5, 250, 20, 250, 50);
+          app.context.bezierCurveTo(200, 5, 150, 20, 170, 80);
+            app.context.fillStyle = '#8ED6FF';
+            app.context.fill();
+          });
 
 // $('#SaveButton').on("click", function(){
 //   console.log("my save button is working");

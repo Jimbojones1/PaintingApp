@@ -2,82 +2,105 @@
 <html ng-app="paintApp">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
-
-    <title>{{title}}</title>
+    <title>Paint</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     <link rel='stylesheet' href='/stylesheets/style.css'>
 
   </head>
-  <body ng-app='paintApp'>
-
-    <div ng-controller='paintCtrl'>
-  <form ng-submit='create(username, email, password)' class="login">
-    <label for="username">Username:</label>
-    <input type="text" ng-model="username" name="username" placeholder="username">
-    <label for="email">Email:</label>
-    <input type="email" ng-model="email" name="email" placeholder="email">
-    <label for="password">Password:</label>
-    <input type="password" ng-model="password" name="password" placeholder="password" ng-minlength='4'>
-    <button type="submit">Login</button>
-  </form>
-
-      <select id='dd' name="load" ng-model='data.activeImg'>
-        <option value="{{user.canvas}}" ng-repeat='user in data'>{{user.username}}</option>
-      </select>
-
-      <img src='{{data.activeImg}}'>
-
-      <ol>
-        <li ng-repeat='users in data'>{{user.username}}</li>
-      </ol>
+    <body ng-app='paintApp'>
+      <div ng-controller='paintCtrl'>
+        <nav>
+          <button type="button" class='btn btn-default buttonHeader'>Login</button>
+          <div class="loginForm">
+            <form ng-submit='create(username, email, password)' class="login .form-inline" >
+              <label for="username">Username:</label>
+              <input type="text" ng-model="username" name="username" placeholder="username">
+              <label for="email">Email:</label>
+              <input type="email" ng-model="email" name="email" placeholder="email">
+              <label for="password">Password:</label>
+              <input type="password" ng-model="password" name="password" placeholder="password" ng-minlength='4'>
+              <button type="submit" class='btn btn-default BtnSubmit'>Submit</button>
+            </form>
+          </div>
+        </nav>
 
 
+        <!-- <img src='{{data.activeImg}}'> -->
 
+        <!-- <ol>
+          <li ng-repeat='users in data'>{{user.username}}</li>
+        </ol> -->
 
+        <canvas id="myCanvas"width="600" height="400"></canvas>
 
-<canvas id="myCanvas"width="600" height="400"></canvas>
-  <div id="clearButtons">
-      <input type="button" id="clearCanvas" value="Clear">
-      <input type="button" id="fillCanvas">
-  </div>
-    <div class="controls">
-        <ul>
-          <button id="LoadButton" ng-click='drawCanvas(data.activeImg)' ng-model='canvas' type="button" name="button">load</button>
-          <button ng-click='create(canvas)' ng-model='canvas' id="SaveButton" type="submit" name="canvas">Save</button>
-          <li class="red selected"></li>
-          <li class="blue"></li>
-          <li class="yellow"></li>
-        </ul>
+        <div id="clearButtons">
+            <input type="button" id="clearCanvas" value="Clear">
+            <input type="button" id="fillCanvas">
         </div>
+        <button id="LoadButton" ng-click='drawCanvas(data.activeImg)' ng-model='canvas' type="button" name="button">load</button>
+        <button ng-click='create(canvas)' ng-model='canvas' id="SaveButton" type="submit" name="canvas">Save</button>
+        <div class="controls">
+            <ul>
+              <li class="red selected"></li>
+              <li class="blue"></li>
+              <li class="yellow"></li>
+            </ul>
+        </div>
+
         <button id="revealColorSelect" type="button" >New Color</button>
           <div id="colorSelect">
-              <span id="newColor"></span>
-              <div class="sliders">
-                <p>
-                  <label for="red">Red</label>
-                  <input id="red" name="red" type="range" min=0 max=225 value=0>
-                </p>
-                <p>
-                  <label for="green">Green</label>
-                  <input id="green" name="green" type="range" min=0 max=225 value=0>
-                </p>
-                <p>
-                  <label for="blue">Blue</label>
-                  <input id="blue" name="blue" type="range" min=0 max=225 value=0>
-                </p>
-                <p>
-                  <label for="opacity">OPA</label>
-                  <input id="opacity" name="opacity" type="range" min=0 max=1 step = 0.1 value= 1>
-                </p>
-              </div>
+            <!-- <span id="newColor"></span>
+            <div class="sliders">
+              <p>
+                <label for="red">Red</label>
+                <input id="red" name="red" type="range" min=0 max=225 value=0>
+              </p>
+              <p>
+                <label for="green">Green</label>
+                <input id="green" name="green" type="range" min=0 max=225 value=0>
+              </p>
+              <p>
+                <label for="blue">Blue</label>
+                <input id="blue" name="blue" type="range" min=0 max=225 value=0>
+              </p>
+              <p>
+                <label for="opacity">OPA</label>
+                <input id="opacity" name="opacity" type="range" min=0 max=1 step = 0.1 value= 1>
+              </p>
+            </div> -->
+
+            </div>
+          </div>
+
+          <div class="colorSelecter">
+            <span id="newColor"></span>
+            <div class="sliders">
+              <p>
+                <label for="red">Red</label>
+                <input id="red" name="red" type="range" min=0 max=225 value=0>
+              </p>
+              <p>
+                <label for="green">Green</label>
+                <input id="green" name="green" type="range" min=0 max=225 value=0>
+              </p>
+              <p>
+                <label for="blue">Blue</label>
+                <input id="blue" name="blue" type="range" min=0 max=225 value=0>
+              </p>
+              <p>
+                <label for="opacity">OPA</label>
+                <input id="opacity" name="opacity" type="range" min=0 max=1 step = 0.1 value= 1>
+              </p>
               <div>
                 <button type="button" id="addNewColor">Add Color</button>
               </div>
             </div>
           </div>
-    <script type="text/javascript" src='/javascripts/jquery.js'></script>
-    <script type="text/javascript" src='/javascripts/angular.min.js'></script>
-    <script type="text/javascript" src='/javascripts/angular-resource.js'></script>
-    <script type="text/javascript" src='/javascripts/core.js'></script>
-    <script type="text/javascript" src='/javascripts/app.js'></script>
-  </body>
+
+      <script type="text/javascript" src='/javascripts/jquery.js'></script>
+      <script type="text/javascript" src='/javascripts/angular.min.js'></script>
+      <script type="text/javascript" src='/javascripts/angular-resource.js'></script>
+      <script type="text/javascript" src='/javascripts/core.js'></script>
+      <script type="text/javascript" src='/javascripts/app.js'></script>
+    </body>
 </html>
