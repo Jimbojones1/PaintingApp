@@ -2,6 +2,8 @@ var app = app || {};
 app.context = $('canvas')[0].getContext("2d");
 app.canvas = $('canvas');
 app.dataURL = app.canvas[0].toDataURL();
+app.minRad = 0.5;
+app.maxRad = 1;
 app.lastEvent;
 app.mouseDown = false;
 

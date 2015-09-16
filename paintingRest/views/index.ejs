@@ -32,6 +32,17 @@
         </ol> -->
 
         <canvas id="myCanvas"width="600" height="400"></canvas>
+        <div class="toolbar">
+          <div id="radius">
+            Radius <span id='radval'>10</span>
+            <div id='decrad' class='radcontrol'>-</div>
+            <div id='incrad' class='radcontrol'>+</div>
+          </div>
+        </div>
+
+        <select id='dd' name="load" ng-model='data.activeImg'>
+          <option value="{{user.canvas}}" ng-repeat='user in data'>{{user.username}}</option>
+        </select>
 
         <div id="clearButtons">
             <input type="button" id="clearCanvas" value="Clear">
@@ -48,54 +59,33 @@
         </div>
 
         <button id="revealColorSelect" type="button" >New Color</button>
-          <div id="colorSelect">
-            <!-- <span id="newColor"></span>
-            <div class="sliders">
-              <p>
-                <label for="red">Red</label>
-                <input id="red" name="red" type="range" min=0 max=225 value=0>
-              </p>
-              <p>
-                <label for="green">Green</label>
-                <input id="green" name="green" type="range" min=0 max=225 value=0>
-              </p>
-              <p>
-                <label for="blue">Blue</label>
-                <input id="blue" name="blue" type="range" min=0 max=225 value=0>
-              </p>
-              <p>
-                <label for="opacity">OPA</label>
-                <input id="opacity" name="opacity" type="range" min=0 max=1 step = 0.1 value= 1>
-              </p>
-            </div> -->
 
-            </div>
           </div>
 
           <div class="colorSelecter">
             <span id="newColor"></span>
-            <div class="sliders">
-              <p>
-                <label for="red">Red</label>
-                <input id="red" name="red" type="range" min=0 max=225 value=0>
-              </p>
-              <p>
-                <label for="green">Green</label>
-                <input id="green" name="green" type="range" min=0 max=225 value=0>
-              </p>
-              <p>
-                <label for="blue">Blue</label>
-                <input id="blue" name="blue" type="range" min=0 max=225 value=0>
-              </p>
-              <p>
-                <label for="opacity">OPA</label>
-                <input id="opacity" name="opacity" type="range" min=0 max=1 step = 0.1 value= 1>
-              </p>
-              <div>
-                <button type="button" id="addNewColor">Add Color</button>
+              <div class="sliders">
+                <p>
+                  <label for="red">Red</label>
+                  <input id="red" name="red" type="range" min=0 max=225 value=0>
+                </p>
+                <p>
+                  <label for="green">Green</label>
+                  <input id="green" name="green" type="range" min=0 max=225 value=0>
+                </p>
+                <p>
+                  <label for="blue">Blue</label>
+                  <input id="blue" name="blue" type="range" min=0 max=225 value=0>
+                </p>
+                <p>
+                  <label for="opacity">OPA</label>
+                  <input id="opacity" name="opacity" type="range" min=0 max=1 step = 0.1 value= 1>
+                </p>
+                <div>
+                  <button type="button" id="addNewColor">Add Color</button>
+                </div>
               </div>
             </div>
-          </div>
 
       <script type="text/javascript" src='/javascripts/jquery.js'></script>
       <script type="text/javascript" src='/javascripts/angular.min.js'></script>
