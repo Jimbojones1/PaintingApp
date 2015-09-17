@@ -43,7 +43,7 @@ paintApp.controller('paintCtrl', function($scope, $http){
     console.log('canvas is working');
     var canvas = document.getElementById("myCanvas");
     context = canvas.getContext('2d');
-    context.clearRect(0, 0, app.canvas.width(), app.canvas.height());
+    context.clearRect(0, 0, app.canvas.width, app.canvas.height);
     var image = new Image();
     console.log($scope.data.activeImg)
     image.src = $scope.data.activeImg;

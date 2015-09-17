@@ -1,24 +1,56 @@
+// var app = app || {};
+// app.context = $('canvas')[0].getContext("2d");
+// app.canvas = $('canvas');
+// app.dataURL = app.canvas[0].toDataURL();
+// app.minRad = 0.5;
+// app.maxRad = 1;
+// app.lastEvent;
+// app.mouseDown = false;
+
 var app = app || {};
-app.context = $('canvas')[0].getContext("2d");
-app.canvas = $('canvas');
-app.dataURL = app.canvas[0].toDataURL();
-app.minRad = 0.5;
-app.maxRad = 1;
-app.lastEvent;
-app.mouseDown = false;
+app.canvas = document.getElementById('myCanvas');
+app.context = app.canvas.getContext('2d');
+
+
+var radius = 10,
+    minRad = 0.5,
+    maxRad = 100,
+    interval = 5,
+    radSpan = document.getElementById('radval'),
+    decRad = document.getElementById('decrad'),
+    incRad = document.getElementById('incrad');
+
 
 $(document).ready(function(){
 
-  // buttons
 
+  app.canvas.addEventListener('mousedown', app.engage);
+  app.canvas.addEventListener('mousemove', app.putPoint);
+  app.canvas.addEventListener('mouseup', app.disengage);
+  app.canvas.addEventListener('mouseleave', app.disengage);
+
+  //
+  // // buttons
+  //
   $('.buttonHeader').on('click', function(){
     console.log('my button is working');
     $('.loginForm').toggle();
-  })
-
+  });
+  //
   $('#revealColorSelect').on('click', function(){
     $('.colorSelecter').slideToggle();
-  })
+  });
+
+  $('#decrad').on('click', function(){
+    app.setRadius(radius-interval);
+  });
+
+  $('#incrad').on('click', function(){
+    app.setRadius(radius+interval);
+  });
+
+
+  //
 
   app.color = $('.selected').css('background-color');
       //when clicking on control list
@@ -28,12 +60,12 @@ $(document).ready(function(){
         $(this).addClass('selected');
         app.color = $(this).css('background-color');
     });
-
+  //
     //when new color is pressed
     $('#revealColorSelect').click(function(){
       $('#colorSelect').toggle('fast');
     });
-
+  //
   //update the new color span
   app.changeColor = function() {
       var r = $("#red").val();
@@ -42,11 +74,12 @@ $(document).ready(function(){
       var a = $("#opacity").val();
       $('#newColor').css("background-color", "rgba(" + r + ", " + b + ", " + g + ", " + a + ")");
     }
-
+  //
+  //
   //when color sliders chnage
   $('input[type=range]').on("input", app.changeColor);
-
-
+  //
+  //
   //when add color is pressed
   $("#addNewColor").click(function() {
 
@@ -59,35 +92,35 @@ $(document).ready(function(){
     });
 
 
-    // on mouse event on the canvas
-    // Draw Lines
-    app.canvas.mousedown(function(e){
-          app.lastEvent = e;
-          app.mouseDown = true;
-      }).mousemove(function(e){
-
-        if(app.mouseDown) {
-          app.context.beginPath();
-          app.context.moveTo(app.lastEvent.offsetX, app.lastEvent.offsetY);
-          app.context.lineTo(e.offsetX, e.offsetY);
-          app.context.strokeStyle = app.color;
-          app.context.stroke();
-          app.lastEvent = e;
-          }
-        }).mouseup(function(){
-              app.mouseDown = false;
-        }).mouseleave(function(){
-          app.canvas.mouseup();
-        });
-
-        // begin custom shape
+    // // on mouse event on the canvas
+    // // Draw Lines
+    // app.canvas.mousedown(function(e){
+    //       app.lastEvent = e;
+    //       app.mouseDown = true;
+    //   }).mousemove(function(e){
+    //
+    //     if(app.mouseDown) {
+    //       app.context.beginPath();
+    //       app.context.moveTo(app.lastEvent.offsetX, app.lastEvent.offsetY);
+    //       app.context.lineTo(e.offsetX, e.offsetY);
+    //       app.context.strokeStyle = app.color;
+    //       app.context.stroke();
+    //       app.lastEvent = e;
+    //       }
+    //     }).mouseup(function(){
+    //           app.mouseDown = false;
+    //     }).mouseleave(function(){
+    //       app.canvas.mouseup();
+    //     });
+    //
+    //     // begin custom shape
 
 
         // clear button
       $('#clearCanvas').on("click", function(){
             console.log("the button is working");
           //app.context.clearRect(400, 600, app.canvas.width, app.canvas.height);
-            app.context.clearRect(0, 0, app.canvas.width(), app.canvas.height());
+            app.context.clearRect(0, 0, app.canvas.width, app.canvas.height);
           });
 
       $('#fillCanvas').on("click", function(){
@@ -135,3 +168,52 @@ $(document).ready(function(){
 //
 // });
 });
+
+app.setRadius = function(newRadius){
+    if (newRadius < minRad){
+      newRadius = minRad;
+      radius = newRadius;
+      radSpan.innerHTML = radius;
+      app.context.lineWidth = radius*2;
+    }
+    else if (newRadius>maxRad) {
+      newRadius = MaxRad;
+      radius = newRadius;
+      radSpan.innerHTML = radius;
+      app.context.lineWidth = radius*2;
+    }
+    else {
+      radius = newRadius;
+      app.context.lineWidth = radius*2;
+      radSpan.innerHTML = radius
+      }
+    }
+
+app.mousedown = false;
+app.context.lineWidth = radius*2;
+
+app.putPoint = function(e){
+  if(app.mousedown){
+  app.context.lineTo(e.offsetX, e.offsetY);
+  app.context.strokeStyle = app.color;
+  app.context.stroke();
+  app.context.beginPath();
+  app.context.arc(e.offsetX, e.offsetY, radius, 0, Math.PI*2)
+  // clientX e.clientY relative to browser window
+  app.context.fillStyle = app.color;
+  app.context.fill();
+  app.context.beginPath();
+  app.context.moveTo(e.offsetX, e.offsetY);
+  }
+}
+
+app.engage = function(e){
+  app.mousedown = true;
+   app.putPoint(e);
+}
+
+app.disengage = function(){
+  app.mousedown = false;
+  app.mouseout
+  app.context.beginPath();
+}
